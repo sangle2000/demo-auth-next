@@ -1,7 +1,15 @@
+import { verifyAuth } from "@/lib/auth";
 import { getTrainings } from "@/lib/training";
 import { TrainingType } from "@/utils/Types";
+import { redirect } from "next/navigation";
 
 export default async function TrainingPage() {
+    const reuslt = await verifyAuth()
+
+    if (!reuslt.user) {
+        return redirect("/")
+    }
+
     const trainingSesstions: TrainingType[] = getTrainings()
 
     return (

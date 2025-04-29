@@ -1,8 +1,9 @@
 import AuthForm from "@/components/auth-form";
-import Image from "next/image";
 
-export default function Home() {
+export default function Home({ searchParams }: { searchParams: { mode?: string } }) {
+  const mode = searchParams?.mode || "login"
+
   return (
-    <AuthForm />
+    <AuthForm mode={mode}/>
   );
 }
